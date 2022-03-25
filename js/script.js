@@ -1,3 +1,8 @@
+var result = document.getElementById('result');
+var source = document.getElementById('product_name');
+var first = "first words";
+var second = "second words";
+
 function cropImg(imageSrc, width, height){
     this.src = imageSrc;
     this.width = width;
@@ -9,7 +14,6 @@ function cropImg(imageSrc, width, height){
     ctx.canvas.height = height;
     var image = new Image();
     image.src = imageSrc; 
-    //drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight);
     image.onload = function(){
         var sourceX;
         var sourceY;
@@ -30,10 +34,27 @@ function cropImg(imageSrc, width, height){
         var displayWidth = width;
         var displayHeight = height;
         ctx.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, displayX, displayY, displayWidth, displayHeight);
-        var img = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");  // here is the most important part because if you dont replace you will get a DOM 18 exception.
-        //window.location.href=img; // it will save locally
+        var img = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
     }
-  }
+}
 
+function inputHandler(event, element, firstWords, secondWords) {
+  this.event = event;
+  this.element = element;
+  this.firstWords = firstWords;
+  this.secondWords = secondWords;
+
+  element.innerHTML = firstWords + " " + event.target.value + " " + secondWords;
+}
+
+source.addEventListener('input', function(e){
+  inputHandler(e, result, first, second);
+});
+source.addEventListener('change', function(e){
+  inputHandler(e, result, first, second);
+});
+source.addEventListener('propertychange', function(e){
+  inputHandler(e, result, first, second);
+});
 
 cropImg('./2.png', 400, 970);
