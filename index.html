@@ -40,17 +40,15 @@
                         <label for="imageHeight">Wysokość obrazka/ów:</label>
                         <input name="imageHeight" class="tools__input" type="text" id="imageHeight" value="970" required>
                         <label for="imageEditOptions">Wybierz jak chcesz edytować obrazek/ki.</label>
-                        <input list="imageEditOptions" class="tools__input" placeholder="Wybierz opcje">
-                        <datalist id="imageEditOptions">
-                            <option value="Zmiana rozdzielczości">
-                            <option value="Zmiana rozdzielczości + przycięcie obszaru roboczego">
-                        </datalist>
+                        <select id="imageEditOptions" class="tools__input">
+                            <option value="Zmiana rozdzielczości">Zmiana rozdzielczości</option>
+                            <option value="Zmiana rozdzielczości + przycięcie obszaru roboczego">Zmiana rozdzielczości + przycięcie obszaru roboczego</option>
+                        </select>
                         <label for="imageFileType">Wybierz w jakim formacie ma być zapisany obrazek/ki.</label>
-                        <input list="imageFileType" class="tools__input" placeholder="Wybierz opcje">
-                        <datalist id="imageFileType">
-                            <option value="PNG">
-                            <option value="JPG/JPEG">
-                        </datalist>
+                        <select id="imageFileType" class="tools__input">
+                            <option value="png">PNG</option>
+                            <option value="jpg">JPG/JPEG</option>
+                        </select>
                         <label for="files">Wybierz pliki: </label>
                         <input id="files" type="file" multiple/>
                         <output id="images_result" />
