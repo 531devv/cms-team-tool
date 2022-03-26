@@ -38,7 +38,7 @@ function cropImg(imageSrc, width, height){
         ctx.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, displayX, displayY, displayWidth, displayHeight);
         var link = document.createElement('a');
         link.download = 'filename.png';
-        link.href = document.getElementById(canvasChild.id).toDataURL()
+        link.href = document.getElementById(canvasChild.id).toDataURL();
         link.click();    
     }
 }
@@ -100,7 +100,8 @@ window.onload = function(){
                   var picFile = event.target;
                   const imageWidth = document.getElementById('imageWidth').value;
                   const imageHeight = document.getElementById('imageHeight').value;
-                  cropImg(picFile.result, imageWidth, imageHeight);   
+                  cropImg(picFile.result, imageWidth, imageHeight);
+                  document.getElementById('files').value = '';   
               });
               
                //Read the image
