@@ -5,8 +5,12 @@ function cropImg(imageSrc, width, height){
     this.src = imageSrc;
     this.width = width;
     this.height = height;
-    
-    const canvas = document.getElementById('canvas');
+    console.log('cropImg');
+    const canvasParent = document.getElementById('canvas');
+    var canvasChild = document.createElement('canvas');
+    canvasChild.id = Math.random() * 10;
+    canvasParent.appendChild(canvasChild);
+    const canvas = document.getElementById(canvasChild.id);
     const ctx = canvas.getContext('2d');
     ctx.canvas.width  = width;
     ctx.canvas.height = height;
@@ -32,10 +36,14 @@ function cropImg(imageSrc, width, height){
         const displayWidth = width;
         const displayHeight = height;
         ctx.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, displayX, displayY, displayWidth, displayHeight);
+        var link = document.createElement('a');
+        link.download = 'filename.png';
+        link.href = document.getElementById(canvasChild.id).toDataURL()
+        link.click();    
     }
 }
 
-function inputHandler(event, element,) {
+function inputHandler(event, element) {
   this.event = event;
   this.element = element;
   const firstWords = document.getElementById("firstWords").value;
@@ -65,4 +73,44 @@ product_name.addEventListener('propertychange', function(e){
   inputHandler(e, result);
 });
 
-cropImg('./2.png', 400, 970);
+window.onload = function(){
+        
+  //Check File API support
+  if(window.File && window.FileList && window.FileReader)
+  {
+      var filesInput = document.getElementById("files");
+      
+      filesInput.addEventListener("change", function(event){
+          
+          var files = event.target.files;
+          var output = document.getElementById("images_result");
+          
+          for(var i = 0; i< files.length; i++)
+          {
+              var file = files[i];
+              
+              //Only pics
+              if(!file.type.match('image'))
+                continue;
+              
+              var picReader = new FileReader();
+              
+              picReader.addEventListener("load",function(event){
+                  
+                  var picFile = event.target;
+                  const imageWidth = document.getElementById('imageWidth').value;
+                  const imageHeight = document.getElementById('imageHeight').value;
+                  cropImg(picFile.result, imageWidth, imageHeight);   
+              });
+              
+               //Read the image
+              picReader.readAsDataURL(file);
+          }                               
+         
+      });
+  }
+  else
+  {
+      console.log("Your browser does not support File API");
+  }
+}

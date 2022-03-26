@@ -22,10 +22,10 @@
                     <div class="input-box">
                         <label for="firstWords">Początek zdania:</label>
                         <input class="tools__input" type="text" name="firstWords" id="firstWords">
+                        <label for="product_name">Środek zdania (Product_name):</label>
+                        <input name="product_name" class="tools__input" type="text" id="product_name" />
                         <label for="secondWords">Koniec zdania:</label>
                         <input class="tools__input" type="text" name="secondWords" id="secondWords">
-                        <label for="product_name">Wprowadź nazwę produktu:</label>
-                        <input name="product_name" class="tools__input" type="text" id="product_name" />
                         <button class="tools__button tools__button--success" onclick="copyDivToClipboard()">Kopiuj</button>
                     </div>
                     <div>
@@ -33,11 +33,21 @@
                     </div>
                 </div>
                 <div class="tools__row">
-
+                    <div class="input-box">
+                        <h2 class="tools__heading-2">Narzędzie do szybkiej zmiany rozdzielczosci obrazków:</h2>
+                        <label for="imageWidth">Szerokość obrazka:</label>
+                        <input class="tools__input" type="text" name="imageWidth" id="imageWidth" value="364">
+                        <label for="imageHeight">Wysokość obrazka:</label>
+                        <input name="imageHeight" class="tools__input" type="text" id="imageHeight" value="970">
+                        <label for="files">Wybierz pliki: </label>
+                        <input id="files" type="file" multiple/>
+                        <output id="images_result" />
+                        <div id="canvas">
+                        </div>
+                    </div>
                 </div>
             </section>
         </div>
     </main>
-    <canvas id="canvas"></canvas>
     <script src="./js/script.js"></script>
 </body>
