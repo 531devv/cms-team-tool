@@ -1,7 +1,7 @@
 var result = document.getElementById('result');
 var source = document.getElementById('product_name');
-var first = "first words";
-var second = "second words";
+const first = "first words";
+const second = "second words";
 
 function cropImg(imageSrc, width, height){
     this.src = imageSrc;
@@ -27,14 +27,13 @@ function cropImg(imageSrc, width, height){
         } else {
           sourceY = 0;
         }
-        var sourceWidth = width;
-        var sourceHeight = height;
-        var displayX = 0;
-        var displayY = 0;
-        var displayWidth = width;
-        var displayHeight = height;
+        const sourceWidth = width;
+        const sourceHeight = height;
+        const displayX = 0;
+        const displayY = 0;
+        const displayWidth = width;
+        const displayHeight = height;
         ctx.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, displayX, displayY, displayWidth, displayHeight);
-        var img = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
     }
 }
 
@@ -45,6 +44,17 @@ function inputHandler(event, element, firstWords, secondWords) {
   this.secondWords = secondWords;
 
   element.innerHTML = firstWords + " " + event.target.value + " " + secondWords;
+}
+
+function copyDivToClipboard() {
+  const range = document.createRange();
+  range.selectNode(result);
+  window.getSelection().removeAllRanges();
+  window.getSelection().addRange(range); 
+  document.execCommand("copy");
+  window.getSelection().removeAllRanges();
+  result.innerHTML = "";
+  source.value = "";
 }
 
 source.addEventListener('input', function(e){
