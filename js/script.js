@@ -52,7 +52,7 @@ function copyDivToClipboard() {
   document.execCommand("copy");
   window.getSelection().removeAllRanges();
   result.innerHTML = "";
-  source.value = "";
+  product_name.value = "";
 }
 
 product_name.addEventListener('input', function(e){
