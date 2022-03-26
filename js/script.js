@@ -1,7 +1,5 @@
 var result = document.getElementById('result');
-var source = document.getElementById('product_name');
-const first = "first words";
-const second = "second words";
+var product_name = document.getElementById('product_name');
 
 function cropImg(imageSrc, width, height){
     this.src = imageSrc;
@@ -37,13 +35,13 @@ function cropImg(imageSrc, width, height){
     }
 }
 
-function inputHandler(event, element, firstWords, secondWords) {
+function inputHandler(event, element,) {
   this.event = event;
   this.element = element;
-  this.firstWords = firstWords;
-  this.secondWords = secondWords;
+  const firstWords = document.getElementById("firstWords").value;
+  const secondWords = document.getElementById("secondWords").value;
 
-  element.innerHTML = firstWords + " " + event.target.value + " " + secondWords;
+  element.innerHTML =  firstWords + " " + event.target.value + " " + secondWords;
 }
 
 function copyDivToClipboard() {
@@ -57,14 +55,14 @@ function copyDivToClipboard() {
   source.value = "";
 }
 
-source.addEventListener('input', function(e){
-  inputHandler(e, result, first, second);
+product_name.addEventListener('input', function(e){
+  inputHandler(e, result);
 });
-source.addEventListener('change', function(e){
-  inputHandler(e, result, first, second);
+product_name.addEventListener('change', function(e){
+  inputHandler(e, result);
 });
-source.addEventListener('propertychange', function(e){
-  inputHandler(e, result, first, second);
+product_name.addEventListener('propertychange', function(e){
+  inputHandler(e, result);
 });
 
 cropImg('./2.png', 400, 970);

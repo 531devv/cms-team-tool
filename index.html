@@ -4,14 +4,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Document</title>
 </head>
 <body>
-    <input type="text" id="product_name" />
-    <button onclick="copyDivToClipboard()">Copy</button>
-    <div>
-        <p id="result"></p>
-    </div>
+    <main>
+        <div class="container">
+            <div class="logo">
+                <img src="./img/logo-performancemedia-dark-1.png" alt="Logo Performance Media">
+            </div>
+            <section class="tools">
+                <h1 class="tools__heading-1 text-center">
+                    CMS Team Tools
+                </h1>
+                <div class="tools__row">
+                    <h2 class="tools__heading-2">Narzędzie do budowania nazwy:</h2>
+                    <div class="input-box">
+                        <label for="firstWords">Początek zdania:</label>
+                        <input class="tools__input" type="text" name="firstWords" id="firstWords">
+                        <label for="secondWords">Koniec zdania:</label>
+                        <input class="tools__input" type="text" name="secondWords" id="secondWords">
+                        <label for="product_name">Wprowadź nazwę produktu:</label>
+                        <input name="product_name" class="tools__input" type="text" id="product_name" />
+                        <button class="tools__button tools__button--success mt-1" onclick="copyDivToClipboard()">Kopiuj</button>
+                    </div>
+                    <div>
+                        <p id="result"></p>
+                    </div>
+                </div>
+                <div class="tools__row">
+
+                </div>
+            </section>
+        </div>
+    </main>
     <canvas id="canvas"></canvas>
     <script src="./js/script.js"></script>
 </body>

@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    padding: 0 60px;
+}
+
+.logo {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding-top: 1rem;
+}
+
+/* Tools */
+
+.tools {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.tools__heading-1 {
+    margin-top: 1rem;
+}
+
+.tools__heading-2 {
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.tools__row {
+    display: flex;
+    justify-content: center;
+    min-width: 50%;
+    flex-direction: column;
+    align-items: center;
+    margin: 3rem 0;
+    background-color: aliceblue;
+    border-radius: 1rem;
+    padding: 2rem;
+}
+
+.tools__box {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.tools__box p {
+    margin-bottom: .2rem;
+}
+
+.input-box {
+    margin-top: .5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.input-box label {
+    margin-top: .5rem;
+    padding-bottom: 5px;
+}
+
+.tools__input {
+    height: 2rem;
+}
+
+.tools__button {
+    height: 2rem;
+    width: 5rem;
+    border: none;
+    color: #FFF;
+    background-color: #979797;
+}
+
+.tools__button--success {
+    background-color: green;
+}
+
+/* JS */
+
+#result {
+    max-width: 100%;
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+
+/* Supports */
+
+.text-center {
+    text-align: center;
+}
+
+.mt-1 {
+    margin-top: 10px;
+}
