@@ -1,11 +1,13 @@
 var result = document.getElementById('result');
-var product_name = document.getElementById('product_name');
+var productName = document.getElementById('productName');
+var templateOption = document.getElementById('fileTemplateOptions');
+var imageWidth = document.getElementById('imageWidth');
+var imageHeight = document.getElementById('imageHeight');
+var imageEditOptions = document.getElementById('imageEditOptions');
+var imageFileType = document.getElementById('imageFileType');
+
 
 function cropImg(imageSrc, width, height){
-    this.src = imageSrc;
-    this.width = width;
-    this.height = height;
-    console.log('cropImg');
     var canvasParent = document.getElementById('canvas');
     var canvasChild = document.createElement('canvas');
     canvasChild.id = Math.random() * 10;
@@ -35,29 +37,23 @@ function cropImg(imageSrc, width, height){
         const displayY = 0;
         const displayWidth = width;
         const displayHeight = height;
-        ctx.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, displayX, displayY, displayWidth, displayHeight);
+        ctx.drawImage(image, 0, 0, width, height);
+        if(imageEditOptions.value === 'resizeAndCrop') {
+          ctx.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, displayX, displayY, displayWidth, displayHeight);
+        }
         var link = document.createElement('a');
         link.download = 'filename';
-        if(document.getElementById('imageFileType').value == 'png') {
+        if(imageFileType.value === 'png') {
           link.href = document.getElementById(canvasChild.id).toDataURL();
         } 
-        if(document.getElementById('imageFileType').value == 'jpg') {
+        if(imageFileType.value === 'jpg') {
           link.href = document.getElementById(canvasChild.id).toDataURL('image/jpeg', 0.7);
         }
         link.click();
     }
 }
 
-function stateChange(newState) {
-  setTimeout('', 5000);
-
-  if(newState == -1) {
-    alert('VIDEO HAS STOPPED');
-  }
-}
-
 function deleteChild(e) {
-  //e.firstElementChild can be used.
   var child = e.lastElementChild; 
   while (child) {
       e.removeChild(child);
@@ -66,8 +62,6 @@ function deleteChild(e) {
 }
 
 function inputHandler(event, element) {
-  this.event = event;
-  this.element = element;
   const firstWords = document.getElementById("firstWords").value;
   const secondWords = document.getElementById("secondWords").value;
 
@@ -82,20 +76,47 @@ function copyDivToClipboard() {
   document.execCommand("copy");
   window.getSelection().removeAllRanges();
   result.innerHTML = "";
-  product_name.value = "";
+  productName.value = "";
 }
 
-product_name.addEventListener('input', function(e){
-  inputHandler(e, result);
-});
-product_name.addEventListener('change', function(e){
-  inputHandler(e, result);
-});
-product_name.addEventListener('propertychange', function(e){
-  inputHandler(e, result);
-});
-
 window.onload = function(){
+  imageHeight.value = '600';
+  imageWidth.value = '600';
+  imageFileType.value = 'jpg';
+  imageEditOptions.value = 'resize';
+
+  productName.addEventListener('input', function(e){
+    inputHandler(e, result);
+  });
+  productName.addEventListener('change', function(e){
+    inputHandler(e, result);
+  });
+  productName.addEventListener('propertychange', function(e){
+    inputHandler(e, result);
+  });
+
+  templateOption.addEventListener('change', function(e){
+    switch(e.target.value) {
+      case '600x600-jpg':
+        imageHeight.value = '600';
+        imageWidth.value = '600';
+        imageFileType.value = 'jpg';
+        imageEditOptions.value = 'resize';
+        break;
+      case '970x364-png-crop':
+        imageHeight.value = '970';
+        imageWidth.value = '364';
+        imageFileType.value = 'png';
+        imageEditOptions.value = 'resizeAndCrop';
+        break;
+      case '970x410-png-crop':
+        imageHeight.value = '970';
+        imageWidth.value = '410';
+        imageFileType.value = 'png';
+        imageEditOptions.value = 'resizeAndCrop';
+        break;
+    }
+  });
         
   //Check File API support
   if(window.File && window.FileList && window.FileReader)
@@ -120,9 +141,7 @@ window.onload = function(){
               picReader.addEventListener("load",function(event){
                   
                   var picFile = event.target;
-                  const imageWidth = document.getElementById('imageWidth').value;
-                  const imageHeight = document.getElementById('imageHeight').value;
-                  cropImg(picFile.result, imageWidth, imageHeight);
+                  cropImg(picFile.result, imageWidth.value, imageHeight.value);
                   document.getElementById('files').value = '';   
                   picReader = null;
                   picFule = null;

@@ -22,10 +22,10 @@
                     <div class="input-box">
                         <label for="firstWords">Początek zdania:</label>
                         <input class="tools__input" type="text" name="firstWords" id="firstWords">
-                        <label for="product_name">Środek zdania (Product_name):</label>
-                        <input name="product_name" class="tools__input" type="text" id="product_name" />
                         <label for="secondWords">Koniec zdania:</label>
                         <input class="tools__input" type="text" name="secondWords" id="secondWords">
+                        <label for="productName">Środek zdania (Product_name):</label>
+                        <input name="productName" class="tools__input" type="text" id="productName" />
                         <button class="tools__button tools__button--success" onclick="copyDivToClipboard()">Kopiuj</button>
                     </div>
                     <div>
@@ -35,14 +35,20 @@
                 <div class="tools__row">
                     <div class="input-box">
                         <h2 class="tools__heading-2">Narzędzie do obróbki zdjęć</h2>
+                        <label for="fileTemplateOptions">Wybierz szablon:</label>
+                        <select id="fileTemplateOptions" class="tools__input">
+                            <option value="600x600-jpg">600x600 JPG</option>
+                            <option value="970x364-png-crop">970x364 PNG + Przycięcie</option>
+                            <option value="970x410-png-crop">970x410 PNG + Przycięcie</option>
+                        </select>
                         <label for="imageWidth">Szerokość zdjęć:</label>
-                        <input class="tools__input" type="text" name="imageWidth" id="imageWidth" value="364" required>
+                        <input class="tools__input" type="text" name="imageWidth" id="imageWidth" required>
                         <label for="imageHeight">Wysokość zdjęć:</label>
-                        <input name="imageHeight" class="tools__input" type="text" id="imageHeight" value="970" required>
+                        <input name="imageHeight" class="tools__input" type="text" id="imageHeight" required>
                         <label for="imageEditOptions">Wybierz jak chcesz edytować zdjęcia:</label>
                         <select id="imageEditOptions" class="tools__input">
-                            <option value="Zmiana rozdzielczości">Zmiana rozdzielczości</option>
-                            <option value="Zmiana rozdzielczości + przycięcie obszaru roboczego">Zmiana rozdzielczości + przycięcie obszaru roboczego</option>
+                            <option value="resize">Zmiana rozdzielczości</option>
+                            <option value="resizeAndCrop">Zmiana rozdzielczości + przycięcie obszaru roboczego</option>
                         </select>
                         <label for="imageFileType">Wybierz w jakim formacie mają być zapisane zdjęcia:</label>
                         <select id="imageFileType" class="tools__input">
@@ -58,5 +64,10 @@
             </section>
         </div>
     </main>
+    <footer>
+        <div class="footer__container">
+            <p class="footer__text"><a href="https://github.com/531devv/cms-team-tool">Made with <span class="heart">&hearts;</span> Marek Klatt</a></p>
+        </div>
+    </footer>
     <script src="./js/script.js"></script>
 </body>

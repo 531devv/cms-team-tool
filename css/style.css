@@ -178,6 +178,23 @@ select {
     padding-left: 0.5rem;
 }
 
+/* Footer */
+
+.footer__container {
+    display: flex;
+    width: 100%;
+    padding: 1rem;
+    justify-content: center;
+}
+
+.footer__text a {
+    color: #e9e9e7;
+    font-weight: 700;
+    text-decoration: none;
+    padding: 1rem;
+    border-radius: 15px;
+}
+
 /* JS */
 
 #result {
@@ -195,4 +212,11 @@ select {
 
 .text-center {
     text-align: center;
+}
+
+/* Icons */
+
+.heart {
+    color:#fa4646;
+    font-size: 2rem;
 }
