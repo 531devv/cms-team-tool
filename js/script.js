@@ -45,8 +45,15 @@ function cropImg(imageSrc, width, height){
           link.href = document.getElementById(canvasChild.id).toDataURL('image/jpeg', 0.7);
         }
         link.click();
-        deleteChild(canvasParent);
     }
+}
+
+function stateChange(newState) {
+  setTimeout('', 5000);
+
+  if(newState == -1) {
+    alert('VIDEO HAS STOPPED');
+  }
 }
 
 function deleteChild(e) {
