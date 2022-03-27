@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/style.css">
-    <title>Document</title>
+    <title>CMS Team Tools</title>
 </head>
 <body>
     <main>
@@ -37,9 +37,10 @@
                         <h2 class="tools__heading-2">Narzędzie do obróbki zdjęć</h2>
                         <label for="fileTemplateOptions">Wybierz szablon:</label>
                         <select id="fileTemplateOptions" class="tools__input">
-                            <option value="600x600-jpg">600x600 JPG</option>
-                            <option value="970x364-png-crop">970x364 PNG + Przycięcie</option>
-                            <option value="970x410-png-crop">970x410 PNG + Przycięcie</option>
+                            <option value="600x600-jpg">600x600 JPG - Zmiana rozmiaru</option>
+                            <option value="970x970-png">970x970 PNG - Zmiana rozmiaru</option>
+                            <option value="970x364-png-crop">970x364 PNG - Przycięcie obszaru roboczego</option>
+                            <option value="970x410-png-crop">970x410 PNG + Przycięcie obszaru roboczego</option>
                         </select>
                         <label for="imageWidth">Szerokość zdjęć:</label>
                         <input class="tools__input" type="text" name="imageWidth" id="imageWidth" required>
@@ -48,7 +49,7 @@
                         <label for="imageEditOptions">Wybierz jak chcesz edytować zdjęcia:</label>
                         <select id="imageEditOptions" class="tools__input">
                             <option value="resize">Zmiana rozdzielczości</option>
-                            <option value="resizeAndCrop">Zmiana rozdzielczości + przycięcie obszaru roboczego</option>
+                            <option value="crop">Przycięcie obszaru roboczego</option>
                         </select>
                         <label for="imageFileType">Wybierz w jakim formacie mają być zapisane zdjęcia:</label>
                         <select id="imageFileType" class="tools__input">
