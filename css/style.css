@@ -48,6 +48,13 @@ body {
     flex-direction: column;
 }
 
+#canvas {
+    visibility: hidden;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+}
+
 .tools__heading-1 {
     margin-top: 2rem;
     color: #fff;

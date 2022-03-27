@@ -6,7 +6,7 @@ function cropImg(imageSrc, width, height){
     this.width = width;
     this.height = height;
     console.log('cropImg');
-    const canvasParent = document.getElementById('canvas');
+    var canvasParent = document.getElementById('canvas');
     var canvasChild = document.createElement('canvas');
     canvasChild.id = Math.random() * 10;
     canvasParent.appendChild(canvasChild);
@@ -37,10 +37,25 @@ function cropImg(imageSrc, width, height){
         const displayHeight = height;
         ctx.drawImage(image, sourceX, sourceY, sourceWidth, sourceHeight, displayX, displayY, displayWidth, displayHeight);
         var link = document.createElement('a');
-        link.download = 'filename.png';
-        link.href = document.getElementById(canvasChild.id).toDataURL();
-        link.click();    
+        link.download = 'filename';
+        if(document.getElementById('imageFileType').value == 'png') {
+          link.href = document.getElementById(canvasChild.id).toDataURL();
+        } 
+        if(document.getElementById('imageFileType').value == 'jpg') {
+          link.href = document.getElementById(canvasChild.id).toDataURL('image/jpeg', 0.7);
+        }
+        link.click();
+        deleteChild(canvasParent);
     }
+}
+
+function deleteChild(e) {
+  //e.firstElementChild can be used.
+  var child = e.lastElementChild; 
+  while (child) {
+      e.removeChild(child);
+      child = e.lastElementChild;
+  }
 }
 
 function inputHandler(event, element) {
@@ -102,6 +117,8 @@ window.onload = function(){
                   const imageHeight = document.getElementById('imageHeight').value;
                   cropImg(picFile.result, imageWidth, imageHeight);
                   document.getElementById('files').value = '';   
+                  picReader = null;
+                  picFule = null;
               });
               
                //Read the image
