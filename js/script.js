@@ -20,15 +20,17 @@ function cropImg(imageSrc, width, height) {
   image.onload = function () {
     var sourceX;
     var sourceY;
-    if (image.width != width) {
-      sourceX = (image.width - width) / 2;
-    } else {
-      sourceX = 0;
-    }
-    if (!image.height != height) {
-      sourceY = (image.width - height) / 2;
-    } else {
-      sourceY = 0;
+    if (imageEditOptions.value === "crop") {
+      if (image.width != width) {
+        sourceX = (image.width - width) / 2;
+      } else {
+        sourceX = 0;
+      }
+      if (!image.height != height) {
+        sourceY = (image.width - height) / 2;
+      } else {
+        sourceY = 0;
+      }
     }
     const sourceWidth = width;
     const sourceHeight = height;
@@ -36,7 +38,23 @@ function cropImg(imageSrc, width, height) {
     const displayY = 0;
     const displayWidth = width;
     const displayHeight = height;
-    ctx.drawImage(image, 0, 0, width, height);
+    if (imageEditOptions.value === "resize") {
+      ctx.drawImage(image, 0, 0, width, height);
+    }
+    if (imageEditOptions.value === "crop") {
+      console.log(sourceX + ' ' + sourceY);
+      ctx.drawImage(
+        image,
+        sourceX,
+        sourceY,
+        sourceWidth,
+        sourceHeight,
+        displayX,
+        displayY,
+        displayWidth,
+        displayHeight
+      );
+    }
     if (imageEditOptions.value === "resizeAndCrop") {
       ctx.drawImage(
         image,
@@ -114,17 +132,23 @@ window.onload = function () {
         imageFileType.value = "jpg";
         imageEditOptions.value = "resize";
         break;
+      case "970x970-png":
+        imageHeight.value = "970";
+        imageWidth.value = "970";
+        imageFileType.value = "png";
+        imageEditOptions.value = "resize";
+        break;
       case "970x364-png-crop":
         imageHeight.value = "970";
         imageWidth.value = "364";
         imageFileType.value = "png";
-        imageEditOptions.value = "resizeAndCrop";
+        imageEditOptions.value = "crop";
         break;
       case "970x410-png-crop":
         imageHeight.value = "970";
         imageWidth.value = "410";
         imageFileType.value = "png";
-        imageEditOptions.value = "resizeAndCrop";
+        imageEditOptions.value = "crop";
         break;
     }
   });
