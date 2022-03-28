@@ -19,7 +19,7 @@ function cropImg(imageSrc, width, height) {
   image.src = imageSrc;
   image.onload = function () {
     var sourceX;
-    var sourceY;
+    var sourceY = 0;
     if (imageEditOptions.value === "crop") {
       if (image.width != width) {
         sourceX = (image.width - width) / 2;
