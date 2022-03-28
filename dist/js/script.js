@@ -200,6 +200,12 @@ window.onload = function () {
         imageFileType.value = "png";
         imageEditOptions.value = "resizeAndCrop";
         break;
+      case "540x320-png-resizeAndCrop":
+        imageHeight.value = "540";
+        imageWidth.value = "320";
+        imageFileType.value = "png";
+        imageEditOptions.value = "resizeAndCrop";
+        break;
     }
   });
 
