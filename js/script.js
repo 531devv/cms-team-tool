@@ -132,6 +132,18 @@ window.onload = function () {
         imageFileType.value = "jpg";
         imageEditOptions.value = "resize";
         break;
+      case "540x540-png":
+        imageHeight.value = "540";
+        imageWidth.value = "540";
+        imageFileType.value = "png";
+        imageEditOptions.value = "resize";
+        break;
+      case "540x320-png-crop":
+        imageHeight.value = "540";
+        imageWidth.value = "320";
+        imageFileType.value = "png";
+        imageEditOptions.value = "crop";
+        break;
       case "970x970-png":
         imageHeight.value = "970";
         imageWidth.value = "970";
