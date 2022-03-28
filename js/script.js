@@ -26,11 +26,6 @@ function cropImg(imageSrc, width, height) {
       } else {
         sourceX = 0;
       }
-      if (!image.height != height) {
-        sourceY = (image.width - height) / 2;
-      } else {
-        sourceY = 0;
-      }
     }
     const sourceWidth = width;
     const sourceHeight = height;
@@ -55,30 +50,67 @@ function cropImg(imageSrc, width, height) {
         displayHeight
       );
     }
+
+    if(imageEditOptions.value != "resizeAndCrop") {
+      var link = document.createElement("a");
+      link.download = "filename";
+      if (imageFileType.value === "png") {
+        link.href = document.getElementById(canvasChild.id).toDataURL();
+      }
+      if (imageFileType.value === "jpg") {
+        link.href = document
+          .getElementById(canvasChild.id)
+          .toDataURL("image/jpeg", 0.8);
+      }
+      link.click();
+    }
+
     if (imageEditOptions.value === "resizeAndCrop") {
-      ctx.drawImage(
-        image,
-        sourceX,
-        sourceY,
-        sourceWidth,
-        sourceHeight,
-        displayX,
-        displayY,
-        displayWidth,
-        displayHeight
-      );
+      ctx.canvas.width = height;
+      ctx.canvas.height = height;
+      ctx.drawImage(image, 0, 0, height, height);
+
+      var newCanvasChild = document.createElement("canvas");
+      newCanvasChild.id = Math.random() * 10;
+      canvasParent.appendChild(newCanvasChild);
+      const newCanvas = document.getElementById(newCanvasChild.id);
+      const newCtx = newCanvas.getContext("2d");
+      newCtx.canvas.width = width;
+      newCtx.canvas.height = height;
+      var newImage = new Image();
+      newImage.src = document.getElementById(canvasChild.id).toDataURL();
+      newImage.onload = function () {
+        if (newImage.width != width) {
+          sourceX = (newImage.width - width) / 2;
+        } else {
+          sourceX = 0;
+        }
+        if (newImage.height != height) {
+          sourceY = (newImage.height - height) / 2;
+        } else {
+          sourceY = 0;
+        }
+        newCtx.drawImage(
+          newImage,
+          sourceX,
+          sourceY,
+          width,
+          height,
+          0,
+          0,
+          width,
+          height
+        );
+        var newLink = document.createElement("a");
+        newLink.download = "filename";
+        if (imageFileType.value == "png") {
+          newLink.href = document.getElementById(newCanvasChild.id).toDataURL();
+        } else {
+          newLink.href = document.getElementById(newCanvasChild.id).toDataURL("image/jpeg", 0.8);
+        }
+        newLink.click();
+       }
     }
-    var link = document.createElement("a");
-    link.download = "filename";
-    if (imageFileType.value === "png") {
-      link.href = document.getElementById(canvasChild.id).toDataURL();
-    }
-    if (imageFileType.value === "jpg") {
-      link.href = document
-        .getElementById(canvasChild.id)
-        .toDataURL("image/jpeg", 0.7);
-    }
-    link.click();
   };
 }
 
@@ -161,6 +193,12 @@ window.onload = function () {
         imageWidth.value = "410";
         imageFileType.value = "png";
         imageEditOptions.value = "crop";
+        break;
+      case "970x364-png-resizeAndCrop":
+        imageHeight.value = "970";
+        imageWidth.value = "364";
+        imageFileType.value = "png";
+        imageEditOptions.value = "resizeAndCrop";
         break;
     }
   });
